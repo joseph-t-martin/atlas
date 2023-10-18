@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AtlasRequest;
 use App\Services\AtlasService;
+use Illuminate\Http\JsonResponse;
 
 class AtlasController extends Controller
 {
@@ -14,8 +15,9 @@ class AtlasController extends Controller
         $this->atlasService = $atlasService;
     }
 
-    public function index(AtlasRequest $request)
+    public function index(AtlasRequest $request): JsonResponse
     {
-        $this->atlasService->getAtlasData($request->all());
+        $result = $this->atlasService->getAtlasData($request->all());
+        return response()->json($result);
     }
 }
