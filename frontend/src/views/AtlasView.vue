@@ -54,21 +54,24 @@ async function atlasLookup() {
       .then((response) => response.json())
       .then((responseJSON) => {
         return responseJSON;
-      });
+      })
+      .catch(() => {
+      })
 
-  totalRecords.value = parseInt(result.number_of_results);
+  if (result) {
+    totalRecords.value = parseInt(result.number_of_results);
 
-
-  for (const productRecord of result.products.product_record) {
-    data.push(
-        [
-          productRecord.owning_organisation_name,
-          productRecord.product_description,
-          productRecord.addresses.address.address_line + ' '
-          + productRecord.addresses.address.city + ' '
-          + productRecord.addresses.address.postcode
-        ]
-    );
+    for (const productRecord of result.products.product_record) {
+      data.push(
+          [
+            productRecord.owning_organisation_name,
+            productRecord.product_description,
+            productRecord.addresses.address.address_line + ' '
+            + productRecord.addresses.address.city + ' '
+            + productRecord.addresses.address.postcode
+          ]
+      );
+    }
   }
 }
 
@@ -84,16 +87,16 @@ onMounted(() => {
     </div>
     <div class="row pt-3 pb-3">
       <div class="col-3">
-        <input type="text" class="form-control" placeholder="Suburb" aria-label="Suburb" v-model="suburb">
+        <input id="suburb" type="text" class="form-control" placeholder="Suburb" aria-label="Suburb" v-model="suburb">
       </div>
       <div class="col-3">
-        <input type="text" class="form-control" placeholder="Area" aria-label="Area" v-model="area">
+        <input id="area" type="text" class="form-control" placeholder="Area" aria-label="Area" v-model="area">
       </div>
       <div class="col-3">
-        <input type="text" class="form-control" placeholder="Region" aria-label="Region" v-model="region">
+        <input id="region" type="text" class="form-control" placeholder="Region" aria-label="Region" v-model="region">
       </div>
       <div class="col-3">
-        <button type="button" class="col btn btn-primary" @click="search()">Search</button>
+        <button id="buttonSearch" type="button" class="col btn btn-primary" @click="search()">Search</button>
       </div>
     </div>
     <div class="row">
@@ -103,17 +106,17 @@ onMounted(() => {
     </div>
     <div class="row">
       <div class="col-4">
-        <button type="button" class="btn btn-link" @click="previous()" v-show="page > 1">Previous Page</button>
+        <button id="buttonPrevious" type="button" class="btn btn-link" @click="previous()" v-show="page > 1">Previous Page</button>
       </div>
       <div class="col-4">
-        <select class="form-select text-center" aria-label="Number of results per page" @change="search()" v-model="size">
+        <select id="selectPage" class="form-select text-center" aria-label="Number of results per page" @change="search()" v-model="size">
           <option value="10">10</option>
           <option value="25">25</option>
           <option value="50">50</option>
         </select>
       </div>
       <div class="col-4">
-        <button type="button" class="btn btn-link float-end" @click="next()" v-show="page < Math.ceil(totalRecords/size)">Next Page</button>
+        <button id="buttonNext" type="button" class="btn btn-link float-end" @click="next()" v-show="page < Math.ceil(totalRecords/size)">Next Page</button>
       </div>
     </div>
   </div>

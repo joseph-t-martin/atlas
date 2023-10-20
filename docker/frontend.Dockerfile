@@ -1,5 +1,4 @@
-FROM node:lts-alpine
-
+FROM node:lts
 WORKDIR /frontend
 COPY ./frontend/package.json .
 RUN npm i
