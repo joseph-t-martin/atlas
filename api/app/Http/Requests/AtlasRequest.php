@@ -26,6 +26,8 @@ class AtlasRequest extends FormRequest
             'area' => 'string|max:255',
             'region' => 'string|max:255',
             'suburb' => 'string|max:255',
+            'size' => 'numeric|max:255',
+            'page' => 'numeric|max:255',
         ];
     }
 }
