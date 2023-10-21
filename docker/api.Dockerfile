@@ -10,5 +10,4 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && mv composer.phar /usr/local/bin/composer
 
 RUN composer install
-RUN php artisan key:generate
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
