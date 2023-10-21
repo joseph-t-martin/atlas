@@ -8,10 +8,11 @@ The frontend is built using vue 3, typescript and bootstrap 5.
 It uses vitest for the test suite.
 
 # Setup
-1. Clone the repo
-2. Inside the api directory copy the .env.example file to .env
-3. Add the atlas API key to the .env file
-4. Run docker-compose up -d
+1. Clone the repo `git clone git@github.com:joseph-t-martin/atlas.git`
+2. Change to the directory `cd atlas`
+3. Inside the api directory copy the .env.example file to .env `cp ./api/.env.example ./api/.env`
+4. Add the atlas API key to the .env file 
+5. Spin up the docker containers `docker-compose up -d`
 
 # Testing
 To Run Frontend tests:  
